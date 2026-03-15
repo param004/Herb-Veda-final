@@ -4,7 +4,8 @@ const cors = require('cors');
 const path = require('path');
 const connectDB = require('./config/db');
 
-connectDB();
+// Initial connection attempt
+connectDB().catch(err => console.error('Initial DB connection error:', err));
 
 const app = express();
 
@@ -26,6 +27,16 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Middleware to ensure DB is connected
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (error) {
+        res.status(500).json({ message: 'Database connection failed', error: error.message });
+    }
+});
 
 // Serve uploaded images statically
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
