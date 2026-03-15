@@ -4,8 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const connectDB = require('./config/db');
 
-// Initial connection attempt
-connectDB().catch(err => console.error('Initial DB connection error:', err));
+// Database connection is handled via middleware for serverless reliability
 
 const app = express();
 
@@ -28,8 +27,8 @@ app.use(cors({
 
 // Google OAuth Security Headers
 app.use((req, res, next) => {
+    // Only set COOP to allow the Google Login popup to communicate back
     res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
-    res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
     next();
 });
 app.use(express.json());
