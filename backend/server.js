@@ -25,6 +25,13 @@ app.use(cors({
     },
     credentials: true 
 }));
+
+// Google OAuth Security Headers
+app.use((req, res, next) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+    res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+    next();
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -62,7 +69,7 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production' && !process.env.NETLIFY) {
     app.listen(PORT, () => console.log(`🌿 Herb & Veda server running on port ${PORT}`));
 }
 
