@@ -30,11 +30,16 @@ app.use(express.urlencoded({ extended: true }));
 // Serve uploaded images statically
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/products', require('./routes/products'));
-app.use('/api/orders', require('./routes/orders'));
-app.use('/api/admin', require('./routes/admin'));
+// API Routes
+const apiRouter = express.Router();
+apiRouter.use('/auth', require('./routes/auth'));
+apiRouter.use('/products', require('./routes/products'));
+apiRouter.use('/orders', require('./routes/orders'));
+apiRouter.use('/admin', require('./routes/admin'));
+
+// Mount router on /api (for local dev) and / (for serverless splat)
+app.use('/api', apiRouter);
+app.use('/', apiRouter);
 
 // Error handler
 app.use((err, req, res, next) => {
