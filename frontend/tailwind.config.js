@@ -1,0 +1,85 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+    theme: {
+        extend: {
+            colors: {
+                // Earthy greens
+                forest: {
+                    50: '#f0faf0',
+                    100: '#dcf5dc',
+                    200: '#bbebbb',
+                    300: '#8dd88d',
+                    400: '#5cbd5c',
+                    500: '#3a9e3a',
+                    600: '#2d7f2d',
+                    700: '#246424',
+                    800: '#1e501e',
+                    900: '#1a431a',
+                },
+                sage: {
+                    50: '#f7faf3',
+                    100: '#edf5e3',
+                    200: '#d8eac5',
+                    300: '#b9d99a',
+                    400: '#96c36a',
+                    500: '#79ab49',
+                    600: '#5d8937',
+                    700: '#496c2b',
+                    800: '#3b5623',
+                    900: '#31471e',
+                },
+                earth: {
+                    50: '#fdf8f0',
+                    100: '#faeedd',
+                    200: '#f3d9b5',
+                    300: '#e9be82',
+                    400: '#dd9e4e',
+                    500: '#d4862a',
+                    600: '#b86c1f',
+                    700: '#98531c',
+                    800: '#7c431c',
+                    900: '#663919',
+                },
+                cream: '#FFFDF7',
+                beige: '#F5EDD6',
+                parchment: '#EDE5C8',
+            },
+            fontFamily: {
+                sans: ['Inter', 'system-ui', 'sans-serif'],
+                serif: ['Playfair Display', 'Georgia', 'serif'],
+                display: ['Cormorant Garamond', 'serif'],
+            },
+            animation: {
+                'fade-in': 'fadeIn 0.6s ease-out',
+                'slide-up': 'slideUp 0.6s ease-out',
+                'slide-down': 'slideDown 0.4s ease-out',
+                float: 'float 3s ease-in-out infinite',
+                'pulse-slow': 'pulse 3s ease-in-out infinite',
+                shimmer: 'shimmer 2s linear infinite',
+            },
+            keyframes: {
+                fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+                slideUp: { '0%': { opacity: 0, transform: 'translateY(30px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+                slideDown: { '0%': { opacity: 0, transform: 'translateY(-20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+                float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-10px)' } },
+                shimmer: { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
+            },
+            backgroundImage: {
+                'hero-gradient': 'linear-gradient(135deg, #1e501e 0%, #3a9e3a 50%, #79ab49 100%)',
+                'card-gradient': 'linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(245,237,214,0.7) 100%)',
+                'nature-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+            },
+            boxShadow: {
+                'card': '0 4px 24px rgba(58, 158, 58, 0.08), 0 1px 4px rgba(0,0,0,0.04)',
+                'card-hover': '0 12px 40px rgba(58, 158, 58, 0.18), 0 4px 12px rgba(0,0,0,0.08)',
+                'glass': '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255,255,255,0.5)',
+                'glow': '0 0 20px rgba(58, 158, 58, 0.4)',
+            },
+            backdropBlur: {
+                xs: '2px',
+            },
+        },
+    },
+    plugins: [],
+}
