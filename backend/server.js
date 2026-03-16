@@ -4,6 +4,12 @@ const cors = require('cors');
 const path = require('path');
 const connectDB = require('./config/db');
 
+// Import routes statically for better bundling
+const authRoutes = require('./routes/auth');
+const productRoutes = require('./routes/products');
+const orderRoutes = require('./routes/orders');
+const adminRoutes = require('./routes/admin');
+
 // Database connection is handled via middleware for serverless reliability
 
 const app = express();
@@ -49,10 +55,10 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // API Routes
 const apiRouter = express.Router();
-apiRouter.use('/auth', require('./routes/auth'));
-apiRouter.use('/products', require('./routes/products'));
-apiRouter.use('/orders', require('./routes/orders'));
-apiRouter.use('/admin', require('./routes/admin'));
+apiRouter.use('/auth', authRoutes);
+apiRouter.use('/products', productRoutes);
+apiRouter.use('/orders', orderRoutes);
+apiRouter.use('/admin', adminRoutes);
 
 // Mount router on /api (for local dev) and / (for serverless splat)
 app.use('/api', apiRouter);
